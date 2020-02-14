@@ -1,0 +1,90 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width-device-width,initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <title>Domcumente</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1>entrada de dados</h1>
+    <div class="row">
+      <div class="col-6">
+        <input type="text" id="texto" class="form-control">
+        <button id="botao" class="btn btn-primary">enviar
+          <i class="fa fa-check"></i>
+        </button>
+      </div>
+    </div>
+    <hr>
+    <h1 style="margin-top: 40px">Lista de nomes</h1>
+    <div class="row">
+      <div class="col-6">
+        <ul class="list-group" id="lista"></ul>
+      </div>
+    </div>
+  </div>
+  <script>
+    window.onload = () => {
+      const lista = document.querySelector("#lista");
+      const botao = document.querySelector("#botao");
+      const texto = document.querySelector("#texto");
+
+      botao.addEventListener('click', create);
+      read();
+    }
+
+    function read() {
+      lista.innerHTML = '';
+      axios.get('/read ')
+        .then((response) => {
+          // handle success
+          console.log(response);
+          response.data.forEach(element => {
+            lista.innerHTML +=
+              `<li class="list-group-item">
+                ${element.nome}
+              </li>`
+          });
+
+        })
+        .catch((error) => {
+          // handle error
+          console.log(error);
+        })
+        .then(function () {
+          // always executed
+        });
+    }
+    function create() {
+      const nome = texto.value;
+
+      axios.post('/create', {
+        nome
+      })
+        .then(function (response) {
+          console.log(response);
+          texto.value = "";
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      read();
+
+    }
+    function edit() { }
+    function upatede(params) { }
+    function del() { }
+  </script>
+
+</body>
+
+</html>
