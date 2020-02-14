@@ -9,7 +9,7 @@ const cors = corsMiddleware({
   allowHeaders: ["API-Token"],
   exposeHeaders: ["API-Token-Expiry"]
 });
-
+const abraao = "asd";
 const knex = require("knex")({
   client: "mysql",
   connection: {
