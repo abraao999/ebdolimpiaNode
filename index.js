@@ -131,6 +131,13 @@ server.post("/addRevista", function(req, res, next) {
       res.send(dados);
     }, next);
 });
+server.post("/addAluno", function(req, res, next) {
+  knex("aluno")
+    .insert(req.body)
+    .then(dados => {
+      res.send(dados);
+    }, next);
+});
 server.put("/revistaPago/:id", function(req, res, next) {
   const { id } = req.params;
   knex("revista")
