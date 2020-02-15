@@ -138,6 +138,13 @@ server.post("/addAluno", function(req, res, next) {
       res.send(dados);
     }, next);
 });
+server.post("/addUsuario", function(req, res, next) {
+  knex("usuario")
+    .insert(req.body)
+    .then(dados => {
+      res.send(dados);
+    }, next);
+});
 server.put("/revistaPago/:id", function(req, res, next) {
   const { id } = req.params;
   knex("revista")
