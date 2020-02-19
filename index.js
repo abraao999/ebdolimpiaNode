@@ -239,7 +239,7 @@ server.get("/listaClasse/:codCongregacao", function(req, res, next) {
 });
 server.del("/deletaClasse/:id", function(req, res, next) {
   const { id } = req.params;
-  knex("presenca")
+  knex("classe")
     .where("id", id)
     .delete()
     .then(dados => {
