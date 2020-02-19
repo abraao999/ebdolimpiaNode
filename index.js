@@ -189,6 +189,13 @@ server.post("/addPresenca", function(req, res, next) {
       res.send(dados);
     }, next);
 });
+server.post("/addClasse", function(req, res, next) {
+  knex("classe")
+    .insert(req.body)
+    .then(dados => {
+      res.send(dados);
+    }, next);
+});
 
 server.del("/deletaPresenca/:trimestre/:codAluno/:ano/:licao", function(
   req,
