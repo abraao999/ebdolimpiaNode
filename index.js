@@ -227,3 +227,10 @@ server.post("/user", function(req, res, next) {
       res.send(dados);
     }, next);
 });
+
+server.get("/listaClasse", function(req, res, next) {
+  knex("rest").then(dados => {
+    if (!dados) return res.send(new errs.BadRequestError("nada encontrado"));
+    res.send(dados);
+  }, next);
+});
