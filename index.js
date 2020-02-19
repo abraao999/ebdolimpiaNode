@@ -247,3 +247,14 @@ server.del("/deletaClasse/:id", function(req, res, next) {
       res.send("dados excluidos");
     }, next);
 });
+server.get("/classeEdit/:id", function(req, res, next) {
+  const { id } = req.params;
+  knex
+    .select("*")
+    .from("classe")
+    .where("id", id)
+    .then(dados => {
+      if (!dados) return res.send(new errs.BadRequestError("nada encontrado"));
+      res.send(dados);
+    }, next);
+});
