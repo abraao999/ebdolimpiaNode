@@ -228,9 +228,22 @@ server.post("/user", function(req, res, next) {
     }, next);
 });
 
-server.get("/listaClasse", function(req, res, next) {
-  knex("rest").then(dados => {
-    if (!dados) return res.send(new errs.BadRequestError("nada encontrado"));
-    res.send(dados);
-  }, next);
+server.get("/listaClasse/:codCongregacao", function(req, res, next) {
+  const { codCongregacao } = req.params;
+  knex("classe")
+    .where("codCongregacao", codCongregacao)
+    .then(dados => {
+      if (!dados) return res.send(new errs.BadRequestError("nada encontrado"));
+      res.send(dados);
+    }, next);
+});
+server.del("/deletaClasse/:id", function(req, res, next) {
+  const { id } = req.params;
+  knex("presenca")
+    .where("id", id)
+    .delete()
+    .then(dados => {
+      if (!dados) return res.send(new errs.BadRequestError("nada encontrado"));
+      res.send("dados excluidos");
+    }, next);
 });
