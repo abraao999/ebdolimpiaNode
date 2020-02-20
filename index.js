@@ -259,3 +259,13 @@ server.get("/classeEdit/:id", function(req, res, next) {
       res.send(dados);
     }, next);
 });
+server.put("/editarClasse/:id", function(req, res, next) {
+  const { id } = req.params;
+  knex("classe")
+    .where("id", id)
+    .update(req.body)
+    .then(dados => {
+      if (!dados) return res.send(new errs.BadRequestError("nada encontrado"));
+      res.send("dados atualizados");
+    }, next);
+});
