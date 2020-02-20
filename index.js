@@ -253,6 +253,7 @@ server.get("/classeEdit/:id", function(req, res, next) {
     .select("*")
     .from("classe")
     .where("id", id)
+    .first()
     .then(dados => {
       if (!dados) return res.send(new errs.BadRequestError("nada encontrado"));
       res.send(dados);
