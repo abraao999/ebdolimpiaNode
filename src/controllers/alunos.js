@@ -10,10 +10,10 @@ module.exports = {
   },
   async alunosCongregacao(req, res, next) {
     const { congregacao } = req.params;
-    const { classe } = req.params;
+    const { idClasse } = req.params;
     knex("aluno")
       .where("congregacao", congregacao)
-      .andWhere("classe", classe)
+      .andWhere("idClasse", idClasse)
       .then(dados => {
         if (!dados)
           return res.send(new errs.BadRequestError("nada encontrado"));

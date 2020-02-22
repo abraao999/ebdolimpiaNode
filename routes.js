@@ -9,7 +9,7 @@ const classe = require("./src/controllers/classe");
 const routes = express.Router();
 
 //aluno
-routes.get("/lista/:congregacao/:classe", alunos.alunosCongregacao);
+routes.get("/lista/:congregacao/:idClasse", alunos.alunosCongregacao);
 routes.get("/listaAlunos", alunos.listaAlunos);
 routes.post("/addAluno", alunos.cadastraAluno);
 
