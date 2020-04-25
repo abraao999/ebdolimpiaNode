@@ -6,4 +6,5 @@ const server = express();
 server.use(cors());
 server.use(express.json());
 server.use(routes);
-server.listen(8080);
+var port = 8080 || 3000
+server.listen(port);
